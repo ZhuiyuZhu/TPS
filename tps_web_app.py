@@ -32,7 +32,8 @@ st.set_page_config(
 
 # 优化样式 - 修复标题截断 + 行高
 st.markdown("""
-        /* 修复所有 Markdown 标题的截断问题 */
+    <style>
+    /* 修复所有 Markdown 标题的截断问题 */
     h1, h2, h3, h4, h5, h6 {
         line-height: 1.5 !important;
         padding-top: 0.5rem !important;
@@ -57,14 +58,13 @@ st.markdown("""
         padding: 5px 0 !important;
     }
 
-    <style>
     /* 全局紧凑 */
     .block-container {
         padding-top: 1rem;
         padding-bottom: 1rem;
         max-width: 95%;
     }
-
+    
     /* 标题样式 - 关键修复：增加行高和上下间距 */
     .main-title {
         font-size: 2rem;
@@ -88,6 +88,105 @@ st.markdown("""
         display: block;
         padding: 5px 0;
     }
+    
+    /* 指标卡片 */
+    .metric-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin: 5px;
+        line-height: 1.4;
+    }
+    .metric-value {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+        line-height: 1.2;
+    }
+    .metric-label {
+        font-size: 0.85rem;
+        opacity: 0.9;
+        line-height: 1.3;
+    }
+    
+    /* 功能卡片 */
+    .feature-box {
+        background-color: #f8f9fa;
+        border-left: 4px solid #2E86AB;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 8px 0;
+        height: auto;
+        min-height: 200px;
+        line-height: 1.6;
+    }
+    .feature-title {
+        color: #2E86AB;
+        font-weight: bold;
+        margin-bottom: 12px;
+        font-size: 1.1rem;
+        line-height: 1.4;
+        display: block;
+    }
+    .feature-list {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 0.9rem;
+        line-height: 1.8;
+    }
+    
+    /* 信息表格 */
+    .info-table {
+        font-size: 0.9rem;
+        line-height: 2;
+    }
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+        line-height: 1.5;
+    }
+    .info-label {
+        color: #666;
+        font-weight: 500;
+        line-height: 1.5;
+    }
+    .info-value {
+        color: #1f4e79;
+        font-weight: 600;
+        line-height: 1.5;
+    }
+    
+    /* 徽章 */
+    .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        margin: 2px;
+        line-height: 1.4;
+    }
+    .badge-blue { background: #e3f2fd; color: #1976d2; }
+    .badge-green { background: #e8f5e9; color: #388e3c; }
+    .badge-orange { background: #fff3e0; color: #f57c00; }
+    
+    /* 确保所有标题行高 */
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 0.5rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.5 !important;
+    }
+    p {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
     /* 指标卡片 */
     .metric-card {
