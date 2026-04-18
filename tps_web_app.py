@@ -10,11 +10,17 @@ import numpy as np
 import plotly.graph_objects as go
 import plotly.express as px
 from datetime import datetime
+import os
+import sys
 
-# 导入之前的模块
+# 修复：添加当前目录到路径（确保 Streamlit Cloud 能找到模块）
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
+
 from syndrome_standardizer import SyndromeStandardizer
 from tps_core import MultimodalDataGenerator, TPSConfig
-from tps_stage2_complete import HybridDataPipeline
+from tps_stage2_complete import TCMEvalRealDataLoader, HybridDataPipeline
 
 # 页面配置
 st.set_page_config(
