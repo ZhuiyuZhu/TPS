@@ -27,15 +27,30 @@ class TCMEvalRealDataLoader:
     TCMEval-SDT 真实数据加载器（处理异质化数据）
     不修改数据，只提取和映射
     """
-
-    def __init__(self, file_paths: List[str]):
+    
+    def __init__(self, file_paths: List[str] = None):
+        import os  # 添加导入
+        
         self.records = []
+        
+        # 如果没有提供路径，尝试自动查找
+        if file_paths is None:
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            potential_files = [
+                os.path.join(current_dir, 'Train_TCM_Data_v1.json'),
+                os.path.join(current_dir, 'Validation_TCM_Data_v1.json'),
+                os.path.join(current_dir, 'Test_TCM_Data_v1.json')
+            ]
+            # 只保留存在的文件
+            file_paths = [f for f in potential_files if os.path.exists(f)]
+            print(f"自动检测到 {len(file_paths)} 个数据文件")
+        
         for fp in file_paths:
-            with open(fp, 'r', encoding='utf-8') as f:
-                self.records.extend(json.load(f))
-
-        # 分析数据结构
-        self._analyze_structure()
+            if os.path.exists(fp):  # 确保文件存在
+                with open(fp, 'r', encoding='utf-8') as f:
+                    self.records.extend(json.load(f))
+            else:
+                print(f"警告：未找到文件 {fp}")
 
     def _analyze_structure(self):
         """分析数据集结构"""
