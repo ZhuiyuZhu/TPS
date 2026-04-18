@@ -32,6 +32,31 @@ st.set_page_config(
 
 # 优化样式 - 修复标题截断 + 行高
 st.markdown("""
+        /* 修复所有 Markdown 标题的截断问题 */
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.5 !important;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    /* 专门针对 Streamlit 生成的 h3 标题（如"批量TPS评估"） */
+    .stMarkdown h3 {
+        line-height: 1.6 !important;
+        font-size: 1.4rem !important;
+        padding: 10px 0 !important;
+        margin: 10px 0 !important;
+        display: block !important;
+        min-height: 2rem !important;
+    }
+    
+    /* 侧边栏标题也修复 */
+    .css-1lcb3h1 h3, .css-1d391kg h3 {
+        line-height: 1.5 !important;
+        padding: 5px 0 !important;
+    }
+
     <style>
     /* 全局紧凑 */
     .block-container {
