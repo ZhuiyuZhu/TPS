@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "version": "TPS-AD v0.2",
+    "source": "基于《人工智能引导下的中医药治疗阿尔茨海默病评估》综述五类核心证候",
+    "last_updated": "2026-04-18",
+    "total_syndromes": 5,
+    "license": "CC BY 4.0"
+  },
+  "syndromes": {
+    "肾虚髓减": {
+      "aliases": ["肾精不足", "肾气虚", "髓海不足", "肾气亏虚", "脑髓空虚"],
+      "keywords": ["健忘", "腰膝酸软", "耳鸣", "发脱", "齿摇", "动作迟缓", "神情呆钝"],
+      "biomarkers": {
+        "upregulated": ["pTau217", "LBP", "IL1β"],
+        "downregulated": ["butyrate", "BDNF", "IGF1"],
+        "mechanism": "血脑屏障损伤 + 神经营养缺乏 + 神经炎症"
+      },
+      "clinical_features": {
+        "tongue": ["舌淡苔白", "舌体瘦小"],
+        "pulse": ["脉沉细", "脉弱"],
+        "cognitive": ["近期记忆衰退", "计算力下降"],
+        "non_cognitive": ["夜尿频多", "腰膝酸软", "耳鸣如蝉"]
+      },
+      "ad_staging": ["MCI", "mild_AD", "moderate_AD"]
+    },
+    "痰瘀闭窍": {
+      "aliases": ["痰浊阻窍", "瘀血阻络", "痰湿蒙窍", "痰迷心窍", "瘀阻脑络"],
+      "keywords": ["头重", "口黏", "舌紫暗", "苔厚腻", "面色晦暗", "肌肤甲错"],
+      "biomarkers": {
+        "upregulated": ["IL1β", "TNFα", "TMAO", "zonulin", "MMP9"],
+        "downregulated": ["IL10", "BDNF"],
+        "mechanism": "神经炎症 + 肠道通透性增加 + 屏障功能障碍"
+      },
+      "clinical_features": {
+        "tongue": ["舌紫暗", "苔厚腻", "有瘀斑"],
+        "pulse": ["脉弦滑", "脉涩"],
+        "cognitive": ["定向力障碍", "执行功能下降", "反应迟钝"],
+        "non_cognitive": ["脘腹胀满", "口黏痰多", "面色黧黑"]
+      },
+      "ad_staging": ["mild_AD", "moderate_AD"]
+    },
+    "心脾两虚": {
+      "aliases": ["心脾气虚", "气血亏虚", "心脾不足", "血虚神失所养"],
+      "keywords": ["失眠", "多梦", "心悸", "食少", "乏力", "面色萎黄"],
+      "biomarkers": {
+        "upregulated": ["cortisol", "zonulin"],
+        "downregulated": ["5-HT", "butyrate", "GABA", "BDNF"],
+        "mechanism": "HPA轴紊乱 + 肠脑轴功能低下 + 神经递质失衡"
+      },
+      "clinical_features": {
+        "tongue": ["舌淡", "苔薄白", "舌体胖大"],
+        "pulse": ["脉细弱", "脉缓"],
+        "cognitive": ["注意力涣散", "入睡困难", "易惊醒"],
+        "non_cognitive": ["食欲减退", "腹胀便溏", "神疲懒言"]
+      },
+      "ad_staging": ["NC", "MCI", "mild_AD"]
+    },
+    "肝阳上亢": {
+      "aliases": ["肝火上炎", "阴虚阳亢", "肝风内动", "阳亢化风"],
+      "keywords": ["眩晕", "头痛", "面红", "目赤", "急躁易怒", "肢体麻木"],
+      "biomarkers": {
+        "upregulated": ["cortisol", "adrenaline", "IL6"],
+        "downregulated": ["GABA", "melatonin"],
+        "mechanism": "交感神经兴奋 + 神经炎症 + 睡眠觉醒周期紊乱"
+      },
+      "clinical_features": {
+        "tongue": ["舌红", "苔黄", "舌体震颤"],
+        "pulse": ["脉弦数", "脉劲急"],
+        "cognitive": ["易激惹", "判断力下降", "冲动行为"],
+        "non_cognitive": ["面红目赤", "头晕头痛", "烦躁失眠"]
+      },
+      "ad_staging": ["MCI", "mild_AD"]
+    },
+    "髓海不足": {
+      "aliases": ["脑髓亏虚", "精血不足", "脑海空虚", "元神失养"],
+      "keywords": ["健忘", "迟钝", "懈怠", "思维贫乏", "智力减退"],
+      "biomarkers": {
+        "upregulated": ["pTau217", "amyloid_beta", "NFL"],
+        "downregulated": ["BDNF", "VEGF", "IGF1"],
+        "mechanism": "神经退行性变 + 脑血流灌注不足 + 神经营养因子缺乏"
+      },
+      "clinical_features": {
+        "tongue": ["舌淡红", "苔少", "舌体瘦薄"],
+        "pulse": ["脉细弱", "脉虚"],
+        "cognitive": ["全面性认知衰退", "失语", "失用", "人格改变"],
+        "non_cognitive": ["懈怠乏力", "头晕眼花", "耳鸣耳聋"]
+      },
+      "ad_staging": ["mild_AD", "moderate_AD"]
+    }
+  },
+  "cross_mapping_rules": {
+    "composite_syndromes": {
+      "肾虚髓减兼痰瘀闭窍": ["肾虚髓减", "痰瘀闭窍"],
+      "心脾两虚兼肝阳上亢": ["心脾两虚", "肝阳上亢"]
+    },
+    "biomarker_conflict_resolution": {
+      "butyrate": {
+        "high_in": "心脾两虚",
+        "low_in": ["肾虚髓减", "痰瘀闭窍"],
+        "resolution": "取加权平均值，偏向分值高的证候"
+      }
+    }
+  }
+}
